@@ -1,0 +1,214 @@
+{\rtf1\ansi\ansicpg936\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;\f1\fnil\fcharset134 PingFangSC-Regular;}
+{\colortbl;\red255\green255\blue255;\red0\green128\blue0;\red43\green131\blue159;\red0\green0\blue255;
+\red163\green21\blue21;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab674
+\pard\tx674\pardeftab674\pardirnatural\partightenfactor0
+
+\f0\fs28 \cf2 \CocoaLigature0 //
+\f1 \'ca\'b5\'cf\'d6
+\f0 cell
+\f1 \'b5\'c4\'c9\'be\'b3\'fd \'b5\'c4\'bc\'b8\'b8\'f6\'b4\'fa\'c0\'ed\'b7\'bd\'b7\'a8
+\f0 \cf0 \
+\cf2 //
+\f1 \'c9\'e8\'d6\'c3\'b1\'e0\'bc\'ad
+\f0 cell
+\f1 \'b5\'c4\'c0\'e0\'d0\'cd
+\f0 \cf0 \
+-(\cf3 UITableViewCellEditingStyle\cf0 )tableView:(\cf3 UITableView\cf0  *)tableView editingStyleForRowAtIndexPath:(\cf3 NSIndexPath\cf0  *)indexPath\
+\{\
+    \cf4 return\cf0  \cf3 UITableViewCellEditingStyleDelete\cf0 ;\
+\}\
+\cf2 //
+\f1 \'c9\'e8\'d6\'c3
+\f0 cell
+\f1 \'bf\'c9\'b1\'e0\'bc\'ad
+\f0 \cf0 \
+-(\cf4 BOOL\cf0 )tableView:(\cf3 UITableView\cf0  *)tableView canEditRowAtIndexPath:(\cf3 NSIndexPath\cf0  *)indexPath\
+\{\
+    \cf4 return\cf0  \cf4 YES\cf0 ;\
+\}\
+-(\cf4 void\cf0 )tableView:(\cf3 UITableView\cf0  *)tableView commitEditingStyle:(\cf3 UITableViewCellEditingStyle\cf0 )editingStyle forRowAtIndexPath:(\cf3 NSIndexPath\cf0  *)indexPath\
+\{\
+    \cf2 //
+\f1 \'c9\'be\'b3\'fd\'b5\'c4\'cb\'bc\'c2\'b7\'a3\'ba
+\f0 1.
+\f1 \'cf\'c8\'c9\'be\'b3\'fd\'ca\'fd\'be\'dd\'bf\'e2\'d6\'d0\'b5\'c4\'ca\'fd\'be\'dd\'a3\'ac
+\f0 2.
+\f1 \'c8\'bb\'ba\'f3\'c9\'be\'b3\'fd\'bd\'e7\'c3\'e6\'b5\'c4
+\f0 cell
+\f1 \'a3\'ac
+\f0 3.
+\f1 \'d7\'ee\'ba\'f3\'cb\'a2\'d0\'c2\'bd\'e7\'c3\'e6
+\f0 \cf0 \
+    \cf3 DBManager\cf0  * manager = [\cf3 DBManager\cf0  \cf3 defaultManager\cf0 ];\
+    \cf3 ReadModel\cf0  * model = \cf4 self\cf0 .\cf3 dataArray\cf0 [indexPath.\cf3 row\cf0 ];\
+    [manager \cf3 deleteNameFromTable\cf0 :model.\cf3 dataID\cf0 ];\
+    \
+    \cf2 //
+\f1 \'c9\'be\'b3\'fd
+\f0 cell\cf0 \
+    [\cf4 self\cf0 .\cf3 dataArray\cf0  \cf3 removeObjectAtIndex\cf0 :indexPath.\cf3 row\cf0 ];\
+    [tableView \cf3 deleteRowsAtIndexPaths\cf0 :@[indexPath] \cf3 withRowAnimation\cf0 :\cf3 UITableViewRowAnimationAutomatic\cf0 ];\
+    \
+    \cf2 //
+\f1 \'cb\'a2\'d0\'c2\'bd\'e7\'c3\'e6
+\f0 \cf0 \
+    \cf2 //[_tableView reloadData];\cf0 \
+\}\
+\
+    \
+       \cf2 iOS9
+\f1 \'b8\'fc\'d0\'c2\'d6\'ae\'ba\'f3\'b5\'c4\'cc\'e1\'ca\'be\'bf\'f2
+\f0 \cf0 \
+\cf2        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"
+\f1 \'cc\'e1\'ca\'be
+\f0 " message:@"
+\f1 \'c7\'eb\'b2\'bb\'d2\'aa\'d6\'d8\'b8\'b4\'ca\'d5\'b2\'d8
+\f0 " preferredStyle:UIAlertControllerStyleAlert];\cf0 \
+\cf2         UIAlertAction * action1 =  [UIAlertAction actionWithTitle:@"
+\f1 \'c8\'a1\'cf\'fb
+\f0 " style:UIAlertActionStyleCancel handler:nil];\cf0 \
+\cf2        [alert addAction:action1];\cf0 \
+\cf2         [self presentViewController:alert animated:YES completion:nil];\cf0 \
+\
+\
+
+\f1 \'b5\'da\'c8\'fd\'b7\'bd\'b5\'c7\'c2\'bd
+\f0 \
+ \cf2 //
+\f1 \'d0\'c2\'c0\'cb\'b5\'c7\'c2\'bc
+\f0 \cf0 \
+            \cf2 //
+\f1 \'d6\'b8\'b6\'a8\'b5\'c7\'c2\'bc\'b5\'c4\'b5\'da\'c8\'fd\'b7\'bd\'c6\'bd\'cc\'a8
+\f0 \cf0 \
+            \cf3 UMSocialSnsPlatform\cf0   * platform = [\cf3 UMSocialSnsPlatformManager\cf0  \cf3 getSocialPlatformWithName\cf0 :\cf3 UMShareToSina\cf0 ];\
+            \cf2 //
+\f1 \'b5\'e3\'bb\'f7\'d6\'ae\'ba\'f3\'b5\'c4\'bb\'d8\'b5\'f7\'ba\'af\'ca\'fd
+\f0 \cf0 \
+            platform.\cf3 loginClickHandler\cf0 (\cf4 self\cf0 ,[\cf3 UMSocialControllerService\cf0  \cf3 defaultControllerService\cf0 ],\cf4 YES\cf0 ,^(\cf3 UMSocialResponseEntity\cf0  * entity)\{\
+                \
+                \cf2 //
+\f1 \'bb\'f1\'c8\'a1\'b5\'bd\'b5\'c4\'d3\'c3\'bb\'a7\'d0\'c5\'cf\'a2
+\f0 \cf0 \
+                \cf4 if\cf0  (entity.\cf3 responseCode\cf0  == \cf3 UMSResponseCodeSuccess\cf0 ) \{\
+                    \cf2 //
+\f1 \'bb\'f1\'c8\'a1\'b5\'bd\'b5\'c4\'d3\'c3\'bb\'a7\'d0\'c5\'cf\'a2
+\f0 \cf0 \
+                    \cf3 UMSocialAccountEntity\cf0  *snsAccount = [[\cf3 UMSocialAccountManager\cf0  \cf3 socialAccountDictionary\cf0 ] \cf3 valueForKey\cf0 :\cf3 UMShareToSina\cf0 ];\
+                    \
+                    [\cf4 self\cf0  \cf3 saveData\cf0 :snsAccount];\
+                    \
+                \}\
+                \
+            \});\
+\
+\
+
+\f1 \'b1\'be\'b5\'d8\'cd\'c6\'cb\'cd
+\f0 \
+\cf2 //
+\f1 \'bd\'e2\'be\'f6
+\f0 iOS8
+\f1 \'d2\'d4\'ba\'f3\'b1\'be\'b5\'d8\'cd\'c6\'cb\'cd\'ce\'de\'b7\'a8\'bd\'d3\'ca\'d5\'b5\'bd\'cd\'c6\'cb\'cd\'cf\'fb\'cf\'a2\'b5\'c4\'ce\'ca\'cc\'e2
+\f0 \cf0 \
+    \cf2 //
+\f1 \'bb\'f1\'c8\'a1\'cf\'b5\'cd\'b3\'b5\'c4\'b0\'e6\'b1\'be\'ba\'c5
+\f0 \cf0 \
+    \cf4 float\cf0  systemVersion = [[\cf3 UIDevice\cf0  \cf3 currentDevice\cf0 ].\cf3 systemVersion\cf0  \cf3 floatValue\cf0 ];\
+    \cf4 if\cf0  (systemVersion >= 8.0)\
+    \{\
+        \cf2 //
+\f1 \'c9\'e8\'d6\'c3\'cd\'c6\'cb\'cd\'cf\'fb\'cf\'a2\'b5\'c4\'c0\'e0\'d0\'cd
+\f0 \cf0 \
+        \cf3 UIUserNotificationType\cf0  type = \cf3 UIUserNotificationTypeAlert\cf0  | \cf3 UIUserNotificationTypeBadge\cf0  | \cf3 UIUserNotificationTypeSound\cf0 ;\
+        \cf2 //
+\f1 \'bd\'ab\'c0\'e0\'d0\'cd\'cc\'ed\'bc\'d3\'b5\'bd\'c9\'e8\'d6\'c3\'c0\'ef
+\f0 \cf0 \
+        \cf3 UIUserNotificationSettings\cf0  * settings = [\cf3 UIUserNotificationSettings\cf0  \cf3 settingsForTypes\cf0 :type \cf3 categories\cf0 :\cf4 nil\cf0 ];\
+        \cf2 //
+\f1 \'bd\'ab\'c9\'e8\'d6\'c3\'c4\'da\'c8\'dd\'d7\'a2\'b2\'e1\'b5\'bd\'cf\'b5\'cd\'b3\'b9\'dc\'c0\'ed\'c0\'ef\'c3\'e6
+\f0 \cf0 \
+        [[\cf3 UIApplication\cf0  \cf3 sharedApplication\cf0 ]\cf3 registerUserNotificationSettings\cf0 :settings];\
+    \}\
+    \
+    \cf2 //
+\f1 \'b3\'f5\'ca\'bc\'bb\'af\'b1\'be\'b5\'d8\'cd\'c6\'cb\'cd
+\f0 \cf0 \
+    \cf3 UILocalNotification\cf0  * localNotification = [[\cf3 UILocalNotification\cf0  \cf3 alloc\cf0 ]\cf3 init\cf0 ];\
+    \cf2 //
+\f1 \'c9\'e8\'d6\'c3\'b4\'d3\'b5\'b1\'c7\'b0\'bf\'aa\'ca\'bc\'ca\'b2\'c3\'b4\'ca\'b1\'ba\'f2\'bf\'aa\'ca\'bc\'cd\'c6\'cb\'cd
+\f0 \cf0 \
+    localNotification.\cf3 fireDate\cf0  = [\cf3 NSDate\cf0  \cf3 dateWithTimeIntervalSinceNow\cf0 :30];\
+    \cf2 //
+\f1 \'c9\'e8\'d6\'c3\'d0\'e8\'d2\'aa\'cd\'c6\'cb\'cd\'b5\'c4\'d6\'d8\'b8\'b4\'d6\'dc\'c6\'da
+\f0 \cf0 \
+    localNotification.\cf3 repeatInterval\cf0  = \cf3 NSCalendarUnitDay\cf0 ;\
+    \cf2 //
+\f1 \'c9\'e8\'d6\'c3\'cd\'c6\'cb\'cd\'b5\'c4\'ca\'b1\'c7\'f8
+\f0 \cf0 \
+    localNotification.\cf3 timeZone\cf0  = [\cf3 NSTimeZone\cf0  \cf3 defaultTimeZone\cf0 ];\
+    \cf2 //
+\f1 \'c9\'e8\'d6\'c3\'cd\'c6\'cb\'cd\'c4\'da\'c8\'dd
+\f0 \cf0 \
+    localNotification.\cf3 alertBody\cf0  = \cf5 @"
+\f1 \'c7\'d7
+\f0 ~~~
+\f1 \'c4\'e3\'ba\'c3\'be\'c3\'c3\'bb\'c0\'b4\'b0\'ae\'c9\'fa\'bb\'ee\'c1\'cb\'a3\'ac\'bf\'ec\'c0\'b4\'bf\'b4\'bf\'b4\'ce\'d2\'b0\'c9\'a3\'a1
+\f0 "\cf0 ;\
+    \cf2 //
+\f1 \'c9\'e8\'d6\'c3\'cd\'c6\'cb\'cd\'ca\'b1\'b5\'c4\'d2\'f4\'d0\'a7
+\f0 \cf0 \
+    localNotification.\cf3 soundName\cf0  = \cf5 @""\cf0 ;\
+    \cf2 //
+\f1 \'c9\'e8\'d6\'c3\'cc\'e1\'ca\'be\'cf\'fb\'cf\'a2\'b5\'c4\'b8\'f6\'ca\'fd
+\f0 \cf0 \
+    localNotification.\cf3 applicationIconBadgeNumber\cf0  = 1;\
+    \cf2 //
+\f1 \'bd\'ab\'cd\'c6\'cb\'cd\'c8\'ce\'ce\'f1\'cc\'ed\'bc\'d3\'b5\'bd\'cf\'b5\'cd\'b3\'b9\'dc\'c0\'ed\'c0\'ef\'c3\'e6
+\f0 \cf0 \
+    [[\cf3 UIApplication\cf0  \cf3 sharedApplication\cf0 ]\cf3 scheduleLocalNotification\cf0 :localNotification];\
+\
+\
+ 
+\f1 \'c8\'a1\'cf\'fb\'cd\'c6\'cb\'cd
+\f0 \
+    \cf2 //
+\f1 \'b5\'da\'d2\'bb\'d6\'d6\'a3\'ac\'d6\'b1\'bd\'d3\'c8\'a1\'cf\'fb\'c8\'ab\'b2\'bf\'b5\'c4\'cd\'c6\'cb\'cd\'c8\'ce\'ce\'f1
+\f0 \cf0 \
+    \cf2 //[[UIApplication sharedApplication]cancelAllLocalNotifications];\cf0 \
+    \
+    \cf2 //
+\f1 \'b5\'da\'b6\'fe\'d6\'d6\'a3\'ac\'c8\'a1\'cf\'fb\'d6\'b8\'b6\'a8\'cc\'f5\'bc\'fe\'cf\'c2\'b5\'c4\'cd\'c6\'cb\'cd\'c8\'ce\'ce\'f1
+\f0 \cf0 \
+    \cf3 NSArray\cf0  * array = [[\cf3 UIApplication\cf0  \cf3 sharedApplication\cf0 ]\cf3 scheduledLocalNotifications\cf0 ];\
+    \cf4 for\cf0  (\cf3 UILocalNotification\cf0  * noti \cf4 in\cf0  array) \{\
+        \cf4 if\cf0  ([noti.\cf3 alertBody\cf0  \cf3 isEqualToString\cf0 :\cf5 @"
+\f1 \'c7\'d7
+\f0 ~~~
+\f1 \'c4\'e3\'ba\'c3\'be\'c3\'c3\'bb\'c0\'b4\'b0\'ae\'c9\'fa\'bb\'ee\'c1\'cb\'a3\'ac\'bf\'ec\'c0\'b4\'bf\'b4\'bf\'b4\'ce\'d2\'b0\'c9\'a3\'a1
+\f0 "\cf0 ]) \{\
+            [[\cf3 UIApplication\cf0  \cf3 sharedApplication\cf0 ]\cf3 cancelLocalNotification\cf0 :noti];\
+            \cf2 //
+\f1 \'c8\'a1\'cf\'fb\'cd\'c6\'cb\'cd\'c8\'ce\'ce\'f1\'ba\'f3\'d6\'d8\'d6\'c3
+\f0 icon 
+\f1 \'b5\'c4\'ca\'fd\'d6\'b5
+\f0 \cf0 \
+            [\cf3 UIApplication\cf0  \cf3 sharedApplication\cf0 ].\cf3 applicationIconBadgeNumber\cf0  = 0;\
+        \}\
+    \}\
+\
+
+\f1 \'cf\'eb\'d2\'aa\'c8\'a1\'cf\'fbicon\'b5\'c4\'cf\'d6\'ca\'b5\'a3\'ac\'d4\'daAppDelegate.m\'d6\'d0\'ca\'b5\'cf\'d6\'d5\'e2\'b8\'f6\'b7\'bd\'b7\'a8\'a3\'ac\'be\'cd\'bf\'c9\'d2\'d4\'d4\'da\'b4\'d3\'c7\'b0\'cc\'a8\'b5\'bd\'ba\'f3\'cc\'a8\'d6\'d0 \'d6\'d8\'d6\'c3icon
+\f0 \
+-(\cf4 void\cf0 )application:(\cf3 UIApplication\cf0  *)application didReceiveLocalNotification:(\cf3 UILocalNotification\cf0  *)notification\
+\{\
+    \cf2 //icon
+\f1 \'d6\'d8\'d6\'c3\'ca\'fd\'d6\'b5
+\f0 \cf0 \
+    application.\cf3 applicationIconBadgeNumber\cf0  = 0;\
+\}\
+\
+\
+}
